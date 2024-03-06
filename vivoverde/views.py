@@ -50,4 +50,19 @@ def mostrar_recetas(request):
 
     contexto= {"recetas": receta} 
 
-    return render(request, "AppCoder/mostrar_cursos.html",contexto)
+    return render(request, "vivoverde/mostrar_cursos.html",contexto)
+
+def crear_receta(request):
+
+    if request.method == "POST":
+        miFormulario = RecetaFormulario(request.POST)
+        
+        if miFormulario.is_valid():
+            informacion = miFormulario.cleaned_data
+            receta = Receta(nombre=informacion["nombre"], ingredientes=informacion["ingredientes"], preparacion=informacion["preparacion"])
+            receta.save()
+            return render(request, "vivoverde/base.html")
+    else:
+        miFormulario = RecetaFormulario()
+
+    return render(request, "form_con_api.html", {"miFormulario": miFormulario})
