@@ -9,7 +9,7 @@ urlpatterns = [
     path('blog/', views.receta, name='Blog'),
     path('about/', views.receta, name='About'),
     path('form-con-api/', views.form_con_api, name="Form-Con-Api"),
-    path('buscar-form-con-api/', views.buscar_form_con_api, name="Buscar-Form-Con-Api"),
+    path('buscar-form/', views.buscar_form, name="Buscar-Form"),
     path('mostrar-recetas/', views.mostrar_recetas, name="Mostrar-Recetas"),
     path('crear-receta/', views.crear_receta, name="Crear-Receta"),
 ]

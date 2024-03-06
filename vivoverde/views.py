@@ -29,7 +29,7 @@ def form_con_api(request):
 
     return render(request, "vivoverde/form_con_api.html", {"miFormulario": miFormulario})
 
-def buscar_form_con_api(request):
+def buscar_form(request):
     if request.method == "POST":
         miFormulario = BuscarRecetaForm(request.POST)
 
@@ -38,11 +38,11 @@ def buscar_form_con_api(request):
             
             receta = Receta.objects.filter(nombre__icontains=informacion["receta"])
 
-            return render(request, "vivoverde/resultados_buscar_form.html", {"recetas": receta})
+            return render(request, "buscar_form_con_api.html", {"recetas": receta})
     else:
         miFormulario = BuscarRecetaForm()
 
-    return render(request, "vivoverde/buscar_form_con_api.html", {"miFormulario": miFormulario})
+    return render(request, "buscar_form_con_api.html", {"miFormulario": miFormulario})
 
 def mostrar_recetas(request):
 
@@ -66,3 +66,4 @@ def crear_receta(request):
         miFormulario = RecetaFormulario()
 
     return render(request, "form_con_api.html", {"miFormulario": miFormulario})
+

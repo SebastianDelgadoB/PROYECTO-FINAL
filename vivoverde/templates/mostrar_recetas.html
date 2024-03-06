@@ -13,7 +13,8 @@
         </table>
         <ul>
             {% for receta in recetas %}
-                <p> {{receta.nombre}} {{receta.ingredientes}} {{receta.preparacion}}  </p>
+                <p> {{receta.nombre}} // {{receta.ingredientes}} </p>
+                <p> {{receta.preparacion}} </p>
             {% endfor %}
             </ul>
     </form>
