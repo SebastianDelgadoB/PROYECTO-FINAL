@@ -20,16 +20,18 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+                <a class="navbar-brand" href="#page-top">ELEGI UN CONSUMO SALUDABLE</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'Inicio' %}">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'Recetas' %}">Recetas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'Usuarios' %}">Usuarios</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'Blog' %}">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'About' %}">About</a></li>
                     </ul>
                 </div>
             </div>
@@ -39,9 +41,9 @@
             <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
-                        <h1 class="mx-auto my-0 text-uppercase">Grayscale</h1>
-                        <h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, one page Bootstrap theme created by Start Bootstrap.</h2>
-                        <a class="btn btn-primary" href="#about">Get Started</a>
+                        <h1 class="mx-auto my-0 text-uppercase">VIVO VERDE</h1>
+                        <h2 class="text-white-50 mx-auto mt-2 mb-5">Donde comienza tu camino a una alimentacion saludable y sostenible</h2>
+                        <a class="btn btn-primary" href="#about">Conocenos</a>
                     </div>
                 </div>
             </div>
@@ -51,15 +53,21 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8">
-                        <h2 class="text-white mb-4">Built with Bootstrap 5</h2>
-                        <p class="text-white-50">
-                            Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
-                            <a href="https://startbootstrap.com/theme/grayscale/">the preview page.</a>
-                            The theme is open source, and you can use it for any purpose, personal or commercial.
+                        <h2 class="text-white mb-4">Un equipo con las ideas claras</h2>
+                        <p class="text-white mb-4">
+                            <p> ¡Bienvenidos a nuestro mundo de sabores sostenibles! Nos apasiona ofrecerte mucho más que simplemente una deliciosa comida; nos esforzamos por llevar tu experiencia gastronómica a un nivel superior, mientras cuidamos nuestro planeta.
+
+                                Imagina un lugar donde cada bocado que disfrutas no solo deleita tus papilas gustativas, sino que también respeta y protege nuestro entorno. Eso es exactamente lo que ofrecemos en nuestro Blog de recetas sustentables y sostenibles.
+                                
+                                Desde el origen de nuestros ingredientes hasta la manera en que preparamos nuestras recetas, cada paso de nuestro proceso se lleva a cabo con el medio ambiente en mente. Trabajamos en estrecha colaboración con agricultores locales comprometidos con prácticas agrícolas sostenibles, lo que nos permite ofrecerte ingredientes frescos y de la más alta calidad en cada plato.
+                                
+                                Nuestras recetas están diseñadas para deleitar tus sentidos y sorprenderte en cada bocado. Desde exquisitas ensaladas llenas de colores y sabores frescos hasta platos principales que te dejarán sin aliento, nuestras opciones gastronómicas te invitan a explorar nuevos sabores mientras cuidas de tu salud y del planeta.
+                                
+                                En nuestra empresa, creemos en un futuro donde la comida sustentable y deliciosa vayan de la mano. Únete a nosotros en este viaje hacia un mundo donde cada comida cuenta, tanto para ti como para el planeta. ¡Descubre el sabor de la sustentabilidad con nosotros hoy mismo!</p>
                         </p>
                     </div>
                 </div>
-                <img class="img-fluid" src="assets/img/ipad.png" alt="..." />
+                <img class="img-fluid" src={% static 'vivoverde/assets/img/ipad.png'%} alt="..." />
             </div>
         </section>
         <!-- Projects-->
@@ -67,17 +75,17 @@
             <div class="container px-4 px-lg-5">
                 <!-- Featured Project Row-->
                 <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/bg-masthead.jpg" alt="..." /></div>
+                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src={% static 'vivoverde/assets/img/home.jpg' %} alt="..." /></div>
                     <div class="col-xl-4 col-lg-5">
                         <div class="featured-text text-center text-lg-left">
                             <h4>Shoreline</h4>
-                            <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
+                            <p class="text-black-50 mb-0">
                         </div>
                     </div>
                 </div>
                 <!-- Project One Row-->
                 <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-01.jpg" alt="..." /></div>
+                    <div class="col-lg-6"><img class="img-fluid" src={% static 'vivoverde/assets/img/home_1.jpg' %} alt="..." /></div>
                     <div class="col-lg-6">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
@@ -91,7 +99,7 @@
                 </div>
                 <!-- Project Two Row-->
                 <div class="row gx-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-02.jpg" alt="..." /></div>
+                    <div class="col-lg-6"><img class="img-fluid" src={% static 'vivoverde/assets/img/home_2.jpg'%} alt="..." /></div>
                     <div class="col-lg-6 order-lg-first">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
@@ -111,7 +119,7 @@
                 <div class="row gx-4 gx-lg-5">
                     <div class="col-md-10 col-lg-8 mx-auto text-center">
                         <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                        <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
+                        <h2 class="text-white mb-5">Subscribite para recibir notificafiones y promos!</h2>
                         <!-- * * * * * * * * * * * * * * *-->
                         <!-- * * SB Forms Contact Form * *-->
                         <!-- * * * * * * * * * * * * * * *-->
@@ -122,8 +130,8 @@
                         <form class="form-signup" id="contactForm" data-sb-form-api-token="API_TOKEN">
                             <!-- Email address input-->
                             <div class="row input-group-newsletter">
-                                <div class="col"><input class="form-control" id="emailAddress" type="email" placeholder="Enter email address..." aria-label="Enter email address..." data-sb-validations="required,email" /></div>
-                                <div class="col-auto"><button class="btn btn-primary disabled" id="submitButton" type="submit">Notify Me!</button></div>
+                                <div class="col"><input class="form-control" id="emailAddress" type="email" placeholder="Ingresa tu correo aqui..." aria-label="Enter email address..." data-sb-validations="required,email" /></div>
+                                <div class="col-auto"><button class="btn btn-primary disabled" id="submitButton" type="submit">Notificame!</button></div>
                             </div>
                             <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">An email is required.</div>
                             <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">Email is not valid.</div>
@@ -157,9 +165,9 @@
                         <div class="card py-4 h-100">
                             <div class="card-body text-center">
                                 <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Address</h4>
+                                <h4 class="text-uppercase m-0">Dirección</h4>
                                 <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50">4923 Market Street, Orlando FL</div>
+                                <div class="small text-black-50">Avenida Libertadores 3034 ; Buenos Aires,Argentina</div>
                             </div>
                         </div>
                     </div>
@@ -167,9 +175,9 @@
                         <div class="card py-4 h-100">
                             <div class="card-body text-center">
                                 <i class="fas fa-envelope text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Email</h4>
+                                <h4 class="text-uppercase m-0">Correo</h4>
                                 <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50"><a href="#!">hello@yourdomain.com</a></div>
+                                <div class="small text-black-50"><a href="#!">hello@vivoverde.com</a></div>
                             </div>
                         </div>
                     </div>
@@ -177,9 +185,9 @@
                         <div class="card py-4 h-100">
                             <div class="card-body text-center">
                                 <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Phone</h4>
+                                <h4 class="text-uppercase m-0">Telefono</h4>
                                 <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50">+1 (555) 902-8832</div>
+                                <div class="small text-black-50"> (011) 902-8832</div>
                             </div>
                         </div>
                     </div>
@@ -198,7 +206,7 @@
         </div>
 
         <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2023</div></footer>
+        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; VIVOVERDE 2024</div></footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

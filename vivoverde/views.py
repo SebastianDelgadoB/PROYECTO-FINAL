@@ -17,7 +17,7 @@ def usuario(request):
 
 def form_con_api(request):
     if request.method == "POST":
-        miFormulario = RecetaFormulario(request.POST) # Aqui me llega la informacion del html
+        miFormulario = RecetaFormulario(request.POST) 
         if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
             receta = Receta(nombre=informacion["receta"], ingredientes=informacion["ingredientes"], preparacion=informacion["preparacion"])
@@ -31,7 +31,7 @@ def form_con_api(request):
 
 def buscar_form_con_api(request):
     if request.method == "POST":
-        miFormulario = BuscarRecetaForm(request.POST) # Aqui me llega la informacion del html
+        miFormulario = BuscarRecetaForm(request.POST)
 
         if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
@@ -44,9 +44,9 @@ def buscar_form_con_api(request):
 
     return render(request, "vivoverde/buscar_form_con_api.html", {"miFormulario": miFormulario})
 
-def mostrar_cursos(request):
+def mostrar_recetas(request):
 
-    receta = Receta.objects.all() #trae todos los profesores
+    receta = Receta.objects.all()
 
     contexto= {"recetas": receta} 
 
