@@ -1,0 +1,15 @@
+{% extends 'vivoverde/base.html' %}
+
+{% load static %}
+
+{% block title %} Inicio {% endblock title %}
+
+{% block main %}
+    <ul>
+        {% for curso in cursos %}
+        <li> {{ receta.nombre }} </li>
+        <li> {{ receta.ingredientes }} </li>
+        <li> {{ receta.preparacion }} </li>
+        {% endfor %}
+    </ul>
+{% endblock main %}

@@ -1,0 +1,15 @@
+{% extends 'vivoverde/base.html' %}
+
+{% load static %}
+
+{% block title %} Inicio {% endblock title %}
+
+{% block main %}
+
+
+{% for receta in recetas %}
+    <li>{{ receta }}</li><a href="{% url 'Delete' receta.id %}">Borrar</a>
+{% endfor %}
+
+
+{% endblock main %}
