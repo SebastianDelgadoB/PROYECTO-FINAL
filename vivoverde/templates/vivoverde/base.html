@@ -48,6 +48,11 @@
                             {% endblock RecetaView %}
                             {% block Buscar %}
                             {% endblock Buscar %}
+                            <div  class="container">
+                                {% block MostrarReceta %}
+                                {% endblock MostrarReceta %}
+                            </div>
+                    
                         </div>
                         <h1 class="mx-auto my-0 text-uppercase">VIVO VERDE</h1>
                         <h2 class="text-white-50 mx-auto mt-2 mb-5">Donde comienza tu camino a una alimentacion saludable y sostenible</h2>
@@ -207,11 +212,6 @@
                 </div>
             </div>
         </section>
-
-        <div  class="container">
-            {% block MostrarReceta %}
-            {% endblock MostrarReceta %}
-        </div>
 
         <!-- Footer-->
         <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; VIVOVERDE 2024</div></footer>

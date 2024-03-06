@@ -50,7 +50,7 @@ def mostrar_recetas(request):
 
     contexto= {"recetas": receta} 
 
-    return render(request, "vivoverde/mostrar_cursos.html",contexto)
+    return render(request, "mostrar_recetas.html",contexto)
 
 def crear_receta(request):
 

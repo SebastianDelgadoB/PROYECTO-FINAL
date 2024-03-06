@@ -2,14 +2,20 @@
 
 {% load static %}
 
-{% block title %} Inicio {% endblock title %}
+{% block title %} Crear Receta {% endblock title %}
 
 {% block MostrarReceta %}
 
-
-{% for receta in recetas %}
-    <li>{{ receta }}</li><a href="{% url 'Delete' receta.id %}">Borrar</a>
-{% endfor %}
-
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            {{ miFormulario.as_table }}
+        </table>
+        <ul>
+            {% for receta in recetas %}
+                <p> {{receta.nombre}} {{receta.ingredientes}} {{receta.preparacion}}  </p>
+            {% endfor %}
+            </ul>
+    </form>
 
 {% endblock MostrarReceta %}

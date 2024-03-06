@@ -10,8 +10,8 @@ urlpatterns = [
     path('about/', views.receta, name='About'),
     path('form-con-api/', views.form_con_api, name="Form-Con-Api"),
     path('buscar-form-con-api/', views.buscar_form_con_api, name="Buscar-Form-Con-Api"),
-    path('mostrar-recetas/', views.mostrar_recetas, name="Mostrar_Recetas"),
-    path('crear_receta/', views.crear_receta, name="CrearReceta"),
+    path('mostrar-recetas/', views.mostrar_recetas, name="Mostrar-Recetas"),
+    path('crear-receta/', views.crear_receta, name="Crear-Receta"),
 ]
 
 # URL's basadas en clases
