@@ -41,6 +41,14 @@
             <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
+                        <div  class="container">
+                            {% block main %}
+                            {% endblock main %}
+                            {% block RecetaView %}
+                            {% endblock RecetaView %}
+                            {% block Buscar %}
+                            {% endblock Buscar %}
+                        </div>
                         <h1 class="mx-auto my-0 text-uppercase">VIVO VERDE</h1>
                         <h2 class="text-white-50 mx-auto mt-2 mb-5">Donde comienza tu camino a una alimentacion saludable y sostenible</h2>
                         <a class="btn btn-primary" href="#about">Conocenos</a>
@@ -53,8 +61,8 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8">
-                        <h2 class="text-white mb-4">Un equipo con las ideas claras</h2>
-                        <p class="text-white mb-4">
+                        <h1 class="text-white mb-4">Un equipo con las ideas claras</h1>
+                        <h6 class="text-white mb-4">
                             <p> ¡Bienvenidos a nuestro mundo de sabores sostenibles! Nos apasiona ofrecerte mucho más que simplemente una deliciosa comida; nos esforzamos por llevar tu experiencia gastronómica a un nivel superior, mientras cuidamos nuestro planeta.
 
                                 Imagina un lugar donde cada bocado que disfrutas no solo deleita tus papilas gustativas, sino que también respeta y protege nuestro entorno. Eso es exactamente lo que ofrecemos en nuestro Blog de recetas sustentables y sostenibles.
@@ -64,10 +72,10 @@
                                 Nuestras recetas están diseñadas para deleitar tus sentidos y sorprenderte en cada bocado. Desde exquisitas ensaladas llenas de colores y sabores frescos hasta platos principales que te dejarán sin aliento, nuestras opciones gastronómicas te invitan a explorar nuevos sabores mientras cuidas de tu salud y del planeta.
                                 
                                 En nuestra empresa, creemos en un futuro donde la comida sustentable y deliciosa vayan de la mano. Únete a nosotros en este viaje hacia un mundo donde cada comida cuenta, tanto para ti como para el planeta. ¡Descubre el sabor de la sustentabilidad con nosotros hoy mismo!</p>
-                        </p>
+                        </h6>
                     </div>
                 </div>
-                <img class="img-fluid" src={% static 'vivoverde/assets/img/ipad.png'%} alt="..." />
+                <img class="img-fluid" src={% static 'vivoverde/assets/img/bg-signup.jpg'%} alt="..." />
             </div>
         </section>
         <!-- Projects-->
@@ -201,8 +209,8 @@
         </section>
 
         <div  class="container">
-            {% block main %}
-            {% endblock main %}
+            {% block MostrarReceta %}
+            {% endblock MostrarReceta %}
         </div>
 
         <!-- Footer-->

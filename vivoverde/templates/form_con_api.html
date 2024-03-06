@@ -2,17 +2,34 @@
 
 {% load static %}
 
-{% block title %} Inicio {% endblock title %}
+{% block title %} Crear Receta {% endblock title %}
 
-{% block main %}
-    <!-- action: representa la url a la que nos va a re-dirigir. Tiene prioridad
-    por sobre la redirección que podamos colocar en views.py -->
+{% block RecetaView %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario - Agregar Receta</title>
+</head>
+<body>
     <form action="" method="POST">
         {% csrf_token %}
-        <table>
-            {{ miFormulario.as_table }}
-        </table>
-        <input type="submit" value="Enviar">
 
-    </form>
-{% endblock main %}
+        <table>
+
+            {{ miFormulario.as_table }}
+
+        </table>
+
+        <input type = "submit" value="Crear receta">
+    </form>  
+    <ul>
+        {% for receta in recetas %}
+            <p> {{receta.nombre}} {{receta.ingredientes}} {{receta.preparacion}}</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+{% endblock%}
