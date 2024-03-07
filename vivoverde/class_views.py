@@ -20,17 +20,17 @@ class RecetaCreateView(CreateView):
     template_name = "receta_create.html"
     fields = ["nombre", "ingredientes", "preparacion"]
 
-    success_url = reverse_lazy("Administrador")
+    success_url = reverse_lazy("RecetaList")
 
 
 class RecetaUpdateView(UpdateView):
     model = Receta
-    success_url = reverse_lazy("List")
+    success_url = reverse_lazy("RecetaList")
     fields = ["id", "nombre", "ingredientes", "preparacion"]
     template_name = "receta_update.html"
 
 
 class RecetaDeleteView(DeleteView):
     model = Receta
-    success_url = reverse_lazy("List")
+    success_url = reverse_lazy("RecetaList")
     template_name = 'receta_confirm_delete.html'

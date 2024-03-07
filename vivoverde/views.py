@@ -17,7 +17,7 @@ def inicio(request):
     return render(request, "index.html")
 
 def receta(request):
-    return render(request, "receta.html")
+    return render(request, "about.html")
 
 def blog(request):
     return render(request, "blog.html")
