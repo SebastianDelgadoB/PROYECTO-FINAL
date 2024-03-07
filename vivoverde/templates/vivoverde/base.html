@@ -49,6 +49,10 @@
                             {% endblock RecetaView %}
                             {% block Buscar %}
                             {% endblock Buscar %}
+                            {% block editar %}
+                            {% endblock editar %}
+                            {% block borrar %}
+                            {% endblock borrar %}
                             <div  class="container">
                                 {% block MostrarReceta %}
                                 {% endblock MostrarReceta %}
@@ -81,6 +85,8 @@
                         </h6>
                     </div>
                 </div>
+                                {% block lista %}
+                                {% endblock lista %}
                 <img class="img-fluid" src={% static 'vivoverde/assets/img/bg-signup.jpg'%} alt="..." />
             </div>
         </section>
