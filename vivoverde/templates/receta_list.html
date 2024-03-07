@@ -1,0 +1,28 @@
+{% extends 'vivoverde/base.html' %}
+
+{% load static %}
+
+{% block title %} Recetas {% endblock title %}
+
+{% block lista %}
+
+
+<div class="row">
+    {% for receta in object_list %}
+        <div class="card" style="width: 18rem;" >
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">{{ receta.nombre }}</h5>
+            <p class="card-text">INGREDIENTES: {{ receta.ingredientes }}</p>
+            <p class="card-text">PREPARACION: {{ receta.preparacion }}</p>
+            <a href="{% url 'RecetaDetail' receta.id %}" class="btn btn-primary">Ver</a>
+            <a href="{% url 'RecetaUpdate' receta.id %}" class="btn btn-primary">Editar</a>
+            <a href="{% url 'RecetaDelete' receta.id %}" class="btn btn-primary">Borrar</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'RecetaCreate' %}">Agregar nuevo</a>
+
+{% endblock lista %}

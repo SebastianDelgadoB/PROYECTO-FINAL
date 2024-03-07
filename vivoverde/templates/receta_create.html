@@ -1,0 +1,19 @@
+{% extends 'vivoverde/base.html' %}
+
+{% load static %}
+
+{% block title %} Crear nueva receta {% endblock title %}
+
+{% block main %}
+
+<form method="POST">
+    {% csrf_token %}
+
+    <div> NOMBRE: {{  form.nombre }}</div>
+    <div> INGREDIENTES: {{  form.ingredientes }}</div>
+    <div> PREPARACION: {{ form.preparacion }}</div>
+
+    <input type="submit" value="Enviar">
+
+</form>
+{% endblock main %}

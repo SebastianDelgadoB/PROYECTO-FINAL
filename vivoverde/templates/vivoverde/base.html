@@ -29,7 +29,7 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="{% url 'Crear-Receta' %}">Nueva_Receta</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Buscar-Form' %}">Buscar_Recetas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'Mostrar-Recetas' %}">Ver_Recetas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'RecetaList' %}">Ver_Recetas</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Usuarios' %}">Usuarios</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Blog' %}">Blog</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'About' %}">About</a></li>
@@ -49,20 +49,31 @@
                             {% endblock RecetaView %}
                             {% block Buscar %}
                             {% endblock Buscar %}
+                            {% block editar %}
+                            {% endblock editar %}
+                            {% block borrar %}
+                            {% endblock borrar %}
                             <div  class="container">
                                 {% block MostrarReceta %}
                                 {% endblock MostrarReceta %}
-                            </div>
-                    
+                            </div>                   
                         </div>
                         <h1 class="mx-auto my-0 text-uppercase">VIVO VERDE</h1>
+                        {% block about %}
+                        {% endblock about %}
+
                         <h2 class="text-white-50 mx-auto mt-2 mb-5">Donde comienza tu camino a una alimentacion saludable y sostenible</h2>
                         <a class="btn btn-primary" href="#about">Conocenos</a>
+
                     </div>
                 </div>
             </div>
         </header>
         <!-- About-->
+        <div class="container">                     
+            {% block lista %}
+            {% endblock lista %}
+        </div>
         <section class="about-section text-center" id="about">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -81,7 +92,9 @@
                         </h6>
                     </div>
                 </div>
-                <img class="img-fluid" src={% static 'vivoverde/assets/img/bg-signup.jpg'%} alt="..." />
+
+                                {% block detalle %}
+                                {% endblock detalle %}
             </div>
         </section>
         <!-- Projects-->
@@ -92,7 +105,7 @@
                     <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src={% static 'vivoverde/assets/img/home.jpg' %} alt="..." /></div>
                     <div class="col-xl-4 col-lg-5">
                         <div class="featured-text text-center text-lg-left">
-                            <h4>Shoreline</h4>
+                            <h4></h4>
                             <p class="text-black-50 mb-0">
                         </div>
                     </div>
@@ -104,8 +117,8 @@
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
                                 <div class="project-text w-100 my-auto text-center text-lg-left">
-                                    <h4 class="text-white">Misty</h4>
-                                    <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
+                                    <h4 class="text-white">Fresco</h4>
+                                    <p class="mb-0 text-white-50">Descubre una vida más sana y sostenible con nuestra selección de vegetales frescos y cultivados de manera sustentable. Desde deliciosos tomates orgánicos hasta crujientes hojas de espinaca, cada bocado es una elección consciente para ti y para el planeta. ¡Convierte tus comidas en un festival de sabores naturales y cuida de tu bienestar y del medio ambiente con cada bocado!</p>
                                 </div>
                             </div>
                         </div>
@@ -118,8 +131,8 @@
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
                                 <div class="project-text w-100 my-auto text-center text-lg-right">
-                                    <h4 class="text-white">Mountains</h4>
-                                    <p class="mb-0 text-white-50">Another example of a project with its respective description. These sections work well responsively as well!</p>
+                                    <h4 class="text-white">Casero</h4>
+                                    <p class="mb-0 text-white-50">Prepara tus platos con amor y responsabilidad. Desde la cocina a tu mesa, cada ingrediente casero y sustentable es un paso hacia un estilo de vida más saludable y consciente. Con nuestras recetas simples y nutritivas, transforma tu hogar en un refugio de sabores auténticos y cuidado del medio ambiente. Descubre el placer de cocinar con ingredientes frescos y locales, brindando bienestar a tu familia y al planeta. ¡Cada bocado es una celebración de la vida y el equilibrio!</p>
                                 </div>
                             </div>
                         </div>

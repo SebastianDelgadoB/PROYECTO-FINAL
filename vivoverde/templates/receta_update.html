@@ -1,0 +1,17 @@
+{% extends 'vivoverde/base.html' %}
+
+{% load static %}
+
+{% block title %} Editar {% endblock title %}
+
+{% block editar %}
+    
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Actualizar">
+</form>
+
+
+{% endblock editar %}

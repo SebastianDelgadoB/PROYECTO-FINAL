@@ -1,0 +1,15 @@
+{% extends 'vivoverde/base.html' %}
+
+{% load static %}
+
+{% block title %} Detalle {% endblock title %}
+
+{% block detalle %}
+
+
+<br> Estudiante: {{ estudiante.apellido }}, {{ estudiante.nombre }}, {{ receta.preparacion }} <br>
+<button type="button" class="btn btn-dark"><a href="{% url 'RecetaList' %}">Regresar</a></button>
+
+
+
+{% endblock detalle %}

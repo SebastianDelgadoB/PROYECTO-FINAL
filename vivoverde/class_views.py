@@ -6,31 +6,31 @@ from django.urls import reverse_lazy
 
 class RecetaListView(ListView):
     model = Receta
-    template_name = "vivoverde/class_list.html"
+    template_name = "receta_list.html"
 
 
 class RecetaDetailView(DetailView):
     model = Receta
-    template_name = "vivoverde/class_detail.html"
+    template_name = "receta_detail.html"
 
 
 class RecetaCreateView(CreateView):
 
     model = Receta
-    template_name = "vivoverde/class_create.html"
+    template_name = "receta_create.html"
     fields = ["nombre", "ingredientes", "preparacion"]
 
-    success_url = reverse_lazy("Administrador")
+    success_url = reverse_lazy("RecetaList")
 
 
 class RecetaUpdateView(UpdateView):
     model = Receta
-    success_url = reverse_lazy("List")
+    success_url = reverse_lazy("RecetaList")
     fields = ["id", "nombre", "ingredientes", "preparacion"]
-    template_name = "vivoverde/class_update.html"
+    template_name = "receta_update.html"
 
 
 class RecetaDeleteView(DeleteView):
     model = Receta
-    success_url = reverse_lazy("List")
-    template_name = 'vivoverde/class_confirm_delete.html'
+    success_url = reverse_lazy("RecetaList")
+    template_name = 'receta_confirm_delete.html'

@@ -1,13 +1,23 @@
 from django.shortcuts import render
-from .models import Receta
+from .models import Receta, Blog, Usuario, Administrador
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from vivoverde.forms import RecetaFormulario, BuscarRecetaForm
+from django.urls import reverse_lazy
 
-# Create your views here.
+
+@login_required
+def about(request):
+    return render(request, "vivoverde/about.html")
+
 def inicio(request):
     return render(request, "index.html")
 
 def receta(request):
-    return render(request, "receta.html")
+    return render(request, "about.html")
 
 def blog(request):
     return render(request, "blog.html")
@@ -66,4 +76,50 @@ def crear_receta(request):
         miFormulario = RecetaFormulario()
 
     return render(request, "form_con_api.html", {"miFormulario": miFormulario})
+
+def borrar_receta(request,receta_nombre):
+    receta = Receta.objects.get(nombre=receta_nombre)
+    receta.delete()
+
+    recetas = Receta.objects.all()
+
+    contexto = {"recetas": recetas}
+
+    return render(request, "receta_update.html", contexto)
+
+class RecetaListView(LoginRequiredMixin, ListView):
+    model = Receta
+    template_name = "vivoverde/receta_list.html"
+
+
+class RecetaDetailView(LoginRequiredMixin, DetailView):
+    model = Receta
+    template_name = "vivoverde/receta_detail.html"
+    login_url = '/users/login/'
+
+    def get_login_url(self):
+        return self.login_url
+
+
+class RecetaCreateView(LoginRequiredMixin, CreateView):
+
+    model = Receta
+    template_name = "vivoverde/receta_create.html"
+    fields = ["nombre", "apellido", "email"]
+    success_url = reverse_lazy("RecetaList")
+
+
+class RecetaUpdateView(LoginRequiredMixin, UpdateView):
+    model = Receta
+    success_url = reverse_lazy("RecetaList")
+    fields = ["nombre", "apellido", "email"]
+    template_name = "vivoverde/receta_update.html"
+
+
+class RecetaDeleteView(LoginRequiredMixin, DeleteView):
+    model = Receta
+    success_url = reverse_lazy("RecetaList")
+    template_name = 'vivoverde/receta_confirm_delete.html'
+
+
 
