@@ -1,7 +1,19 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
-from .forms import UserRegisterForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from users.forms import UserRegisterForm, UserEditForm, AvatarFormulario
+from users.models import Avatar
+
+@login_required
+def inicio(request):
+    avatares = Avatar.objects.get(user=request.user.id)
+    return render(
+        request,
+        "AppCoder/index.html",
+        {"url": avatares[0].imagen.url}
+    )
 
 def login_request(request):
 
@@ -18,7 +30,7 @@ def login_request(request):
 
             if user is not None:
                 login(request, user)
-                return render(request, "vivoverde/index.html")
+                return render(request, "index.html")
 
         msg_login = "Usuario o contraseña incorrectos"
 
@@ -31,13 +43,82 @@ def register(request):
     if request.method == 'POST':
 
         form = UserRegisterForm(request.POST)
-        if form.is_valid():
+        if  form.is_valid():
             # Si los datos ingresados en el form son válidos, con form.save()
             # creamos un nuevo user usando esos datos
             form.save()
-            return render(request,"vivoverde/index.html")
+            return render(request,"index.html")
         
         msg_register = "Error en los datos ingresados"
 
     form = UserRegisterForm()     
     return render(request,"users/registro.html" ,  {"form":form, "msg_register": msg_register})
+
+# Vista de editar el perfil
+# Obligamos a loguearse para editar los datos del usuario activo
+@login_required
+def editar_usuario(request):
+
+    # El usuario para poder editar su perfil primero debe estar logueado.
+    # Al estar logueado, podremos encontrar dentro del request la instancia
+    # del usuario -> request.user
+    usuario = request.user
+
+    if request.method == 'POST':
+
+        miFormulario = UserEditForm(request.POST)
+
+        if miFormulario.is_valid():
+
+            informacion = miFormulario.cleaned_data
+
+            # Datos que se modificarán!!!
+            usuario.email = informacion['email']
+            usuario.first_name = informacion['first_name']
+            usuario.last_name = informacion['last_name']
+            usuario.password1 = informacion['password1']
+            usuario.password2 = informacion['password1']
+            usuario.save()
+
+            # Retornamos al inicio una vez guardado los datos
+            return render(request, "index.html")
+
+    else:
+        # Cuando el método es GET, podemos mostrar el formulario
+        # con datos pre-cargados porque los conocemos del mismo usuario
+        datos = {
+            'email': usuario.email,
+            'first_name': usuario.first_name,
+            'last_name' : usuario.last_name
+        }
+        miFormulario = UserEditForm(initial=datos)
+
+    return render(
+        request,
+        "users/editar_usuario.html",
+        {
+            "mi_form": miFormulario,
+            "usuario": usuario
+        }
+    )
+@login_required
+def agregar_avatar(request):
+
+    if request.method == "POST":
+        mi_form = AvatarFormulario(request.POST, request.FILES)
+
+        if mi_form.is_valid():
+            user = User.objects.get(username=request.user)
+            try:
+                avatar = Avatar.objects.get(user=user)
+            except Avatar.DoesNotExist:
+                avatar = Avatar(user=user, imagen=mi_form.cleaned_data["imagen"])
+            avatar.imagen = mi_form.cleaned_data['imagen']
+            avatar.save()
+
+            return render(request, "index.html")
+    else:
+        mi_form = AvatarFormulario()
+
+        context_data = {"mi_form": mi_form}
+        return render(request, "users/agregar_avatar.html", context_data)

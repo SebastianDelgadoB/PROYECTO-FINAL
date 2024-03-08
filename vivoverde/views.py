@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Receta, Blog, Usuario, Administrador
+from users.models import Avatar
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
@@ -7,6 +8,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from vivoverde.forms import RecetaFormulario, BuscarRecetaForm
 from django.urls import reverse_lazy
+from django.http import Http404
 
 
 @login_required
@@ -14,16 +16,20 @@ def about(request):
     return render(request, "vivoverde/about.html")
 
 def inicio(request):
-    return render(request, "index.html")
+    avatares = Avatar.objects.get(user=request.user.id)
+    return render(request, "index.html") 
 
 def receta(request):
     return render(request, "about.html")
 
+
 def blog(request):
     return render(request, "blog.html")
 
+
 def usuario(request):
     return render(request, "usuario.html")
+
 
 def form_con_api(request):
     if request.method == "POST":
@@ -38,6 +44,7 @@ def form_con_api(request):
         miFormulario = RecetaFormulario()
 
     return render(request, "vivoverde/form_con_api.html", {"miFormulario": miFormulario})
+
 
 def buscar_form(request):
     if request.method == "POST":
@@ -54,6 +61,7 @@ def buscar_form(request):
 
     return render(request, "buscar_form_con_api.html", {"miFormulario": miFormulario})
 
+
 def mostrar_recetas(request):
 
     receta = Receta.objects.all()
@@ -61,6 +69,7 @@ def mostrar_recetas(request):
     contexto= {"recetas": receta} 
 
     return render(request, "mostrar_recetas.html",contexto)
+
 
 def crear_receta(request):
 
@@ -77,6 +86,7 @@ def crear_receta(request):
 
     return render(request, "form_con_api.html", {"miFormulario": miFormulario})
 
+
 def borrar_receta(request,receta_nombre):
     receta = Receta.objects.get(nombre=receta_nombre)
     receta.delete()
@@ -87,7 +97,7 @@ def borrar_receta(request,receta_nombre):
 
     return render(request, "receta_update.html", contexto)
 
-class RecetaListView(LoginRequiredMixin, ListView):
+class RecetaListView(ListView):
     model = Receta
     template_name = "vivoverde/receta_list.html"
 
@@ -118,8 +128,14 @@ class RecetaUpdateView(LoginRequiredMixin, UpdateView):
 
 class RecetaDeleteView(LoginRequiredMixin, DeleteView):
     model = Receta
-    success_url = reverse_lazy("RecetaList")
     template_name = 'vivoverde/receta_confirm_delete.html'
+    success_url = reverse_lazy("RecetaList")
 
 
 
+
+def error_404_view(request, exception):
+    return render(request, 'error_404.html', status=404)
+
+def error_500_view(request):
+    return render(request, 'error_405.html', status=405)

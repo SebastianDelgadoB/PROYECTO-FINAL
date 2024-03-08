@@ -1,0 +1,20 @@
+{% extends 'vivoverde/base.html' %}
+
+{% load static %}
+
+{% block title %} Editar Perfil {% endblock title %}
+
+{% block main %}
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <table>
+
+            {{ mi_form.as_table }}
+
+        </table>
+        <input type="submit" value="Actualizar">
+
+    </form>
+
+{% endblock main %}

@@ -2,6 +2,9 @@ from django.urls import path
 from vivoverde import views
 from vivoverde import class_views
 
+# handler404 = 'myapp.views.error_404_view'
+# handler500 = 'myapp.views.error_500_view'
+
 urlpatterns = [
     path('', views.inicio, name='Inicio'),
     path('recetas/', views.receta, name='Recetas'),
