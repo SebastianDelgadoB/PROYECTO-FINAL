@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Receta, Blog, Usuario, Administrador
+from users.models import Avatar
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
@@ -14,8 +15,8 @@ def about(request):
     return render(request, "vivoverde/about.html")
 
 def inicio(request):
-    return render(request, "index.html")
-
+    #avatares = Avatar.objects.get(user=request.user.id)
+    return render(request, "index.html") # {"url": avatares.imagen.url})
 
 def receta(request):
     return render(request, "about.html")

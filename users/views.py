@@ -2,16 +2,17 @@ from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from users.forms import UserRegisterForm, UserEditForm
+from django.contrib.auth.models import User
+from users.forms import UserRegisterForm, UserEditForm, AvatarFormulario
 from users.models import Avatar
 
 @login_required
 def inicio(request):
-    avatares = Avatar.objects.get(user=request.user)
+    avatares = Avatar.objects.get(user=request.user.id)
     return render(
         request,
         "AppCoder/index.html",
-        {"url": avatares.imagen.url}
+        {"url": avatares[0].imagen.url}
     )
 
 def login_request(request):
@@ -100,3 +101,20 @@ def editar_usuario(request):
             "usuario": usuario
         }
     )
+@login_required
+def agregar_avatar(request):
+
+    if request.method == "POST":
+        mi_form = AvatarFormulario(request.POST, request.FILES)
+
+        if mi_form.is_valid():
+            user = User.objects.get(username=request.user)
+            avatar = Avatar(user=user, imagen=mi_form.cleaned_data['imagen'])
+            avatar.save()
+
+            return render(request, "index.html")
+    else:
+        mi_form = AvatarFormulario()
+
+        context_data = {"mi_form": mi_form}
+        return render(request, "users/agregar_avatar.html", context_data)
