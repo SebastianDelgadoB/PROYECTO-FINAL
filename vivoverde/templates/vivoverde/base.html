@@ -33,6 +33,31 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'Usuarios' %}">Usuarios</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Blog' %}">Blog</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'About' %}">About</a></li>
+
+                        {% if request.user.is_authenticated %}
+
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ request.user.username }}
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="{% url 'Login' %}">Abrir sesión</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'Logout' %}">Cerrar sesión</a></li>
+                                </ul>
+                            </div>
+
+                        {% else %}
+
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Usuario
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="{% url 'Login' %}">Inciar Sesión</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'Register' %}">Crear cuenta</a></li>
+                                </ul>
+                            </div>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -53,6 +78,8 @@
                             {% endblock editar %}
                             {% block borrar %}
                             {% endblock borrar %}
+                            {% block logout %}
+                            {% endblock logout %}
                             <div  class="container">
                                 {% block MostrarReceta %}
                                 {% endblock MostrarReceta %}

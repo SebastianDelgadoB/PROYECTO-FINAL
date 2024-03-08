@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
-from .forms import UserRegisterForm
+from users.forms import UserRegisterForm
 
 def login_request(request):
 
@@ -18,7 +18,7 @@ def login_request(request):
 
             if user is not None:
                 login(request, user)
-                return render(request, "vivoverde/index.html")
+                return render(request, "index.html")
 
         msg_login = "Usuario o contraseña incorrectos"
 
@@ -31,11 +31,11 @@ def register(request):
     if request.method == 'POST':
 
         form = UserRegisterForm(request.POST)
-        if form.is_valid():
+        if  form.is_valid():
             # Si los datos ingresados en el form son válidos, con form.save()
             # creamos un nuevo user usando esos datos
             form.save()
-            return render(request,"vivoverde/index.html")
+            return render(request,"index.html")
         
         msg_register = "Error en los datos ingresados"
 
