@@ -109,7 +109,11 @@ def agregar_avatar(request):
 
         if mi_form.is_valid():
             user = User.objects.get(username=request.user)
-            avatar = Avatar(user=user, imagen=mi_form.cleaned_data['imagen'])
+            try:
+                avatar = Avatar.objects.get(user=user)
+            except Avatar.DoesNotExist:
+                avatar = Avatar(user=user, imagen=mi_form.cleaned_data["imagen"])
+            avatar.imagen = mi_form.cleaned_data['imagen']
             avatar.save()
 
             return render(request, "index.html")

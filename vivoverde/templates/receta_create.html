@@ -6,14 +6,46 @@
 
 {% block main %}
 
-<form method="POST">
-    {% csrf_token %}
+<body>
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+        
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                {{ form.nombre }}
+            </div>
+            <div class="mb-3">
+                <label for="ingredientes" class="form-label">Ingredientes</label>
+                {{ form.ingredientes }}
+            </div>
+            <div class="mb-3">
+                <label for="preparacion" class="form-label">Preparación</label>
+                {{ form.preparacion }}
+            </div>
+        
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
 
-    <div> NOMBRE: {{  form.nombre }}</div>
-    <div> INGREDIENTES: {{  form.ingredientes }}</div>
-    <div> PREPARACION: {{ form.preparacion }}</div>
+    <!-- Bootstrap JS (opcional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 
-    <input type="submit" value="Enviar">
-
-</form>
 {% endblock main %}
+
+
+
+
+<body>
+    <form method="POST">
+        {% csrf_token %}
+    
+        <div> NOMBRE: {{  form.nombre }}</div>
+        <div> INGREDIENTES: {{  form.ingredientes }}</div>
+        <div> PREPARACION: {{ form.preparacion }}</div>
+    
+        <input type="submit" value="Enviar">
+    
+    </form>
+</body>

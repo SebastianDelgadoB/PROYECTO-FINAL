@@ -1,270 +1,244 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>{% block title %} Index {% endblock title %}</title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static 'vivoverde/css/styles.css' %}" rel="stylesheet" />
-    </head>
-    <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <a class="nav-item"><a class="nav-link" href="{% url 'Inicio' %}">Inicio</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'Crear-Receta' %}">Nueva_Receta</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'Buscar-Form' %}">Buscar_Recetas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'RecetaList' %}">Ver_Recetas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'Usuarios' %}">Usuarios</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'Blog' %}">Blog</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'About' %}">About</a></li>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %} Index {% endblock title %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}">
 
-                        {% if request.user.is_authenticated %}
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {{ request.user.username }}
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="{% url 'EditarUsuario' %}">Editar Usuario</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'Logout' %}">Cerrar sesión</a></li>
-                                </ul>
-                            </div>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-                        {% else %}
+    <link href="{% static 'vivoverde/css/styles.css' %}" rel="stylesheet">
+</head>
+<body id="page-top">
 
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Usuario
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="{% url 'Login' %}">Inciar Sesión</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'Register' %}">Crear cuenta</a></li>
-                                </ul>
-                            </div>
-                        {% endif %}
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- Masthead-->
-        <header class="masthead">
-            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-                <div class="d-flex justify-content-center">
-                    <div class="text-center">
-                        <div  class="container">
-                            {% block main %}
-                            {% endblock main %}
-                            {% block RecetaView %}
-                            {% endblock RecetaView %}
-                            {% block Buscar %}
-                            {% endblock Buscar %}
-                            {% block editar %}
-                            {% endblock editar %}
-                            {% block borrar %}
-                            {% endblock borrar %}
-                            {% block logout %}
-                            {% endblock logout %}
-                            <div  class="container">
-                                {% block MostrarReceta %}
-                                {% endblock MostrarReceta %}
-                            </div>                   
-                        </div>
-                        <h1 class="mx-auto my-0 text-uppercase">VIVO VERDE</h1>
-                        {% block about %}
-                        {% endblock about %}
-
-                        <h2 class="text-white-50 mx-auto mt-2 mb-5">Donde comienza tu camino a una alimentacion saludable y sostenible</h2>
-                        <a class="btn btn-primary" href="#about">Conocenos</a>
-
+    {% block navbar %}
+    {% endblock navbar %}
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="{% url 'Inicio' %}">Inicio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'RecetaCreate' %}">Nueva Receta</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'Buscar-Form' %}">Buscar Receta</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'RecetaList' %}">Ver Recetas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'About' %}">About</a></li>
+                    <div class="container">
+                        <img src="{{ url }}" height="40px" alt="">
                     </div>
-                </div>
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ request.user.username }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'EditarUsuario' %}">Editar Usuario</a></li>
+                            <li><a class="dropdown-item" href="{% url 'AgregarAvatar' %}">Modificar Avatar</a></li>
+                            <li><a class="dropdown-item" href="{% url 'Logout' %}">Cerrar sesión</a></li>
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Usuario
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'Login' %}">Iniciar Sesión</a></li>
+                            <li><a class="dropdown-item" href="{% url 'Register' %}">Crear cuenta</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                </ul>
             </div>
-        </header>
-        <!-- About-->
-        <div class="container">                     
-            {% block lista %}
-            {% endblock lista %}
         </div>
-        <section class="about-section text-center" id="about">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8">
-                        <h1 class="text-white mb-4">Un equipo con las ideas claras</h1>
-                        <h6 class="text-white mb-4">
-                            <p> ¡Bienvenidos a nuestro mundo de sabores sostenibles! Nos apasiona ofrecerte mucho más que simplemente una deliciosa comida; nos esforzamos por llevar tu experiencia gastronómica a un nivel superior, mientras cuidamos nuestro planeta.
+    </nav>
+    
+    <header class="masthead">
+        <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+            <div class="text-center">
+                <div class="container">
+                    {% block main %}
+                    {% endblock main %}
+                    {% block RecetaView %}
+                    {% endblock RecetaView %}
+                    {% block Buscar %}
+                    {% endblock Buscar %}
+                    {% block editar %}
+                    {% endblock editar %}
+                    {% block borrar %}
+                    {% endblock borrar %}
+                    {% block logout %}
+                    {% endblock logout %}
+                    {% block MostrarReceta %}
+                    {% endblock MostrarReceta %}
+                </div>
+                <h1 class="mx-auto my-0 text-uppercase">VIVO VERDE</h1>
+                {% block about %}
+                {% endblock about %}
+                <h2 class="text-white-50 mx-auto mt-2 mb-5">Donde comienza tu camino a una alimentación saludable y sostenible</h2>
+                <a class="btn btn-primary" href="#about">Conocenos</a>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        {% block lista %}
+        {% endblock lista %}
+    </div>
+    <section class="about-section text-center" id="about">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="text-white mb-4">Un equipo con las ideas claras</h1>
+                    <h6 class="text-white mb-4">
+                        <p>¡Bienvenidos a nuestro mundo de sabores sostenibles! Nos esforzamos por llevar tu experiencia gastronómica a un nivel superior, cuidando nuestro planeta. Cada bocado que disfrutas deleita tus papilas gustativas y protege nuestro entorno. Desde el origen de nuestros ingredientes hasta la preparación de nuestras recetas, cada paso se realiza con el medio ambiente en mente. Trabajamos con agricultores locales comprometidos con prácticas sostenibles, ofreciendo ingredientes frescos y de alta calidad en cada plato. Nuestras recetas están diseñadas para sorprenderte en cada bocado, desde ensaladas frescas hasta platos principales. Creemos en un futuro donde la comida sostenible y deliciosa vayan de la mano. Únete a nosotros en este viaje hacia un mundo donde cada comida cuenta. ¡Descubre el sabor de la sustentabilidad hoy mismo!</p>
+                    </h6>
+                </div>
+            </div>
+            <div class="grid text-center" style="--bs-gap: .25rem 1rem;">
+                <div class="g-col-6">
+                    {% block detalle %}
+                    {% endblock detalle %}
+                </div>
+            </div>
+        </div>
+    </section>
 
-                                Imagina un lugar donde cada bocado que disfrutas no solo deleita tus papilas gustativas, sino que también respeta y protege nuestro entorno. Eso es exactamente lo que ofrecemos en nuestro Blog de recetas sustentables y sostenibles.
-                                
-                                Desde el origen de nuestros ingredientes hasta la manera en que preparamos nuestras recetas, cada paso de nuestro proceso se lleva a cabo con el medio ambiente en mente. Trabajamos en estrecha colaboración con agricultores locales comprometidos con prácticas agrícolas sostenibles, lo que nos permite ofrecerte ingredientes frescos y de la más alta calidad en cada plato.
-                                
-                                Nuestras recetas están diseñadas para deleitar tus sentidos y sorprenderte en cada bocado. Desde exquisitas ensaladas llenas de colores y sabores frescos hasta platos principales que te dejarán sin aliento, nuestras opciones gastronómicas te invitan a explorar nuevos sabores mientras cuidas de tu salud y del planeta.
-                                
-                                En nuestra empresa, creemos en un futuro donde la comida sustentable y deliciosa vayan de la mano. Únete a nosotros en este viaje hacia un mundo donde cada comida cuenta, tanto para ti como para el planeta. ¡Descubre el sabor de la sustentabilidad con nosotros hoy mismo!</p>
-                        </h6>
+    <section class="projects-section bg-light" id="projects">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-0 justify-content-center">
+                <div class="col-lg-6"><img class="img-fluid" src="{% static 'vivoverde/assets/img/home_2.jpg'%}" alt="..."></div>
+                <div class="col-lg-6 order-lg-first">
+                    <div class="bg-black text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div class="project-text w-100 my-auto text-center text-lg-right">
+                                <h4 class="text-white">Casero</h4>
+                                <p class="mb-0 text-white-50">Prepara tus platos con amor y responsabilidad. Desde la cocina a tu mesa, cada ingrediente casero y sustentable es un paso hacia un estilo de vida más saludable y consciente. Con nuestras recetas simples y nutritivas, transforma tu hogar en un refugio de sabores auténticos y cuidado del medio ambiente. Descubre el placer de cocinar con ingredientes frescos y locales, brindando bienestar a tu familia y al planeta. ¡Cada bocado es una celebración de la vida y el equilibrio!</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                                {% block detalle %}
-                                {% endblock detalle %}
-            </div>
-        </section>
-        <!-- Projects-->
-        <section class="projects-section bg-light" id="projects">
-            <div class="container px-4 px-lg-5">
-                <!-- Featured Project Row-->
-                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src={% static 'vivoverde/assets/img/home.jpg' %} alt="..." /></div>
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="featured-text text-center text-lg-left">
-                            <h4></h4>
-                            <p class="text-black-50 mb-0">
-                        </div>
-                    </div>
-                </div>
-                <!-- Project One Row-->
-                <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src={% static 'vivoverde/assets/img/home_1.jpg' %} alt="..." /></div>
-                    <div class="col-lg-6">
-                        <div class="bg-black text-center h-100 project">
-                            <div class="d-flex h-100">
-                                <div class="project-text w-100 my-auto text-center text-lg-left">
-                                    <h4 class="text-white">Fresco</h4>
-                                    <p class="mb-0 text-white-50">Descubre una vida más sana y sostenible con nuestra selección de vegetales frescos y cultivados de manera sustentable. Desde deliciosos tomates orgánicos hasta crujientes hojas de espinaca, cada bocado es una elección consciente para ti y para el planeta. ¡Convierte tus comidas en un festival de sabores naturales y cuida de tu bienestar y del medio ambiente con cada bocado!</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project Two Row-->
-                <div class="row gx-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src={% static 'vivoverde/assets/img/home_2.jpg'%} alt="..." /></div>
-                    <div class="col-lg-6 order-lg-first">
-                        <div class="bg-black text-center h-100 project">
-                            <div class="d-flex h-100">
-                                <div class="project-text w-100 my-auto text-center text-lg-right">
-                                    <h4 class="text-white">Casero</h4>
-                                    <p class="mb-0 text-white-50">Prepara tus platos con amor y responsabilidad. Desde la cocina a tu mesa, cada ingrediente casero y sustentable es un paso hacia un estilo de vida más saludable y consciente. Con nuestras recetas simples y nutritivas, transforma tu hogar en un refugio de sabores auténticos y cuidado del medio ambiente. Descubre el placer de cocinar con ingredientes frescos y locales, brindando bienestar a tu familia y al planeta. ¡Cada bocado es una celebración de la vida y el equilibrio!</p>
-                                </div>
+            <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+                <div class="col-lg-6"><img class="img-fluid" src="{% static 'vivoverde/assets/img/especias.jpg' %}" alt="..."></div>
+                <div class="col-lg-6">
+                    <div class="bg-black text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div class="project-text w-100 my-auto text-center text-lg-left">
+                                <h4 class="text-white">Sabor asegurado</h4>
+                                <p class="mb-0 text-white-50">Experimenta el sabor puro y fresco de nuestras especias orgánicas! Cultivadas con cuidado y sin químicos, nuestras especias agregan un toque distintivo a tus platos. Desde la cálida cúrcuma hasta el aroma ahumado del comino, cada especia es un viaje de sabores naturales. Eleva tus recetas con nuestra selección fresca y sostenible de especias orgánicas.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- Signup-->
-        <section class="signup-section" id="signup">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5">
-                    <div class="col-md-10 col-lg-8 mx-auto text-center">
-                        <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                        <h2 class="text-white mb-5">Subscribite para recibir notificafiones y promos!</h2>
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- * * SB Forms Contact Form * *-->
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- This form is pre-integrated with SB Forms.-->
-                        <!-- To make this form functional, sign up at-->
-                        <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
-                        <form class="form-signup" id="contactForm" data-sb-form-api-token="API_TOKEN">
-                            <!-- Email address input-->
-                            <div class="row input-group-newsletter">
-                                <div class="col"><input class="form-control" id="emailAddress" type="email" placeholder="Ingresa tu correo aqui..." aria-label="Enter email address..." data-sb-validations="required,email" /></div>
-                                <div class="col-auto"><button class="btn btn-primary disabled" id="submitButton" type="submit">Notificame!</button></div>
-                            </div>
-                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">An email is required.</div>
-                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">Email is not valid.</div>
-                            <!-- Submit success message-->
-                            <!---->
-                            <!-- This is what your users will see when the form-->
-                            <!-- has successfully submitted-->
-                            <div class="d-none" id="submitSuccessMessage">
-                                <div class="text-center mb-3 mt-2 text-white">
-                                    <div class="fw-bolder">Form submission successful!</div>
-                                    To activate this form, sign up at
-                                    <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                </div>
-                            </div>
-                            <!-- Submit error message-->
-                            <!---->
-                            <!-- This is what your users will see when there is-->
-                            <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3 mt-2">Error sending message!</div></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Contact-->
-        <section class="contact-section bg-black">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5">
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Dirección</h4>
-                                <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50">Avenida Libertadores 3034 ; Buenos Aires,Argentina</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-envelope text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Correo</h4>
-                                <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50"><a href="#!">hello@vivoverde.com</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Telefono</h4>
-                                <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50"> (011) 902-8832</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="social d-flex justify-content-center">
-                    <a class="mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                    <a class="mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                    <a class="mx-2" href="#!"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-        </section>
 
-        <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; VIVOVERDE 2024</div></footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </body>
+            <div class="row gx-0 justify-content-center">
+                <div class="col-lg-6"><img class="img-fluid" src="{% static 'vivoverde/assets/img/home_3.jpg'%}" alt="..."></div>
+                <div class="col-lg-6 order-lg-first">
+                    <div class="bg-black text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div class="project-text w-100 my-auto text-center text-lg-right">
+                                <h4 class="text-white">Recetas para vos</h4>
+                                <p class="mb-0 text-white-50">Descubre nuestro tesoro de recetas frescas y saludables, cada una única en sabor y nutrición. Desde ensaladas vibrantes hasta platos principales reconfortantes, nuestras recetas están diseñadas para deleitar tu paladar y nutrir tu cuerpo. Utilizamos ingredientes frescos y de calidad, seleccionados cuidadosamente para garantizar que cada bocado sea una experiencia memorable. Nuestro enfoque en la frescura y la salud te ayudará a alcanzar tus metas culinarias y de bienestar. Ya sea que estés buscando inspiración para una comida rápida entre semana o una cena especial, nuestras recetas únicas son la opción perfecta para aquellos que valoran la alimentación saludable y deliciosa. ¡Descubre un mundo de sabor fresco y saludable con nosotros hoy mismo!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="signup-section" id="signup">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5">
+                <div class="col-md-10 col-lg-8 mx-auto text-center">
+                    <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+                    <h2 class="text-white mb-5">Suscríbete para recibir notificaciones y promociones</h2>
+                    <form class="form-signup" id="contactForm" data-sb-form-api-token="API_TOKEN">
+                        <div class="row input-group-newsletter">
+                            <div class="col">
+                                <input class="form-control" id="emailAddress" type="email" placeholder="Ingresa tu correo aquí..." aria-label="Enter email address..." data-sb-validations="required,email">
+                                <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">Se requiere un correo electrónico.</div>
+                                <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">El correo electrónico no es válido.</div>
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-primary" id="submitButton" type="submit">Notifícame</button>
+                            </div>
+                        </div>
+                        <div class="d-none" id="submitSuccessMessage">
+                            <div class="text-center mb-3 mt-2 text-white">
+                                <div class="fw-bolder">¡Envío del formulario exitoso!</div>
+                                Para activar este formulario, regístrese en <a href="https://startbootstrap.com/solution/contact-forms"></a>
+                            </div>
+                        </div>
+                        <div class="d-none" id="submitErrorMessage">
+                            <div class="text-center text-danger mb-3 mt-2">Error al enviar el mensaje.</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section bg-black">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="card py-4 h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+                            <h4 class="text-uppercase m-0">Dirección</h4>
+                            <hr class="my-4 mx-auto">
+                            <div class="small text-black-50">Avenida Libertadores 3034 ; Buenos Aires, Argentina</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="card py-4 h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-envelope text-primary mb-2"></i>
+                            <h4 class="text-uppercase m-0">Correo</h4>
+                            <hr class="my-4 mx-auto">
+                            <div class="small text-black-50"><a href="#!">hello@vivoverde.com</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="card py-4 h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-mobile-alt text-primary mb-2"></i>
+                            <h4 class="text-uppercase m-0">Teléfono</h4>
+                            <hr class="my-4 mx-auto">
+                            <div class="small text-black-50">(011) 902-8832</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="social d-flex justify-content-center">
+                <a class="mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                <a class="mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                <a class="mx-2" href="#!"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; VIVOVERDE 2024</div></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="{% static 'js/scripts.js' %}"></script>
+
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
 </html>

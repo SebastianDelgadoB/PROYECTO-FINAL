@@ -8,6 +8,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from vivoverde.forms import RecetaFormulario, BuscarRecetaForm
 from django.urls import reverse_lazy
+from django.http import Http404
 
 
 @login_required
@@ -15,8 +16,8 @@ def about(request):
     return render(request, "vivoverde/about.html")
 
 def inicio(request):
-    #avatares = Avatar.objects.get(user=request.user.id)
-    return render(request, "index.html") # {"url": avatares.imagen.url})
+    avatares = Avatar.objects.get(user=request.user.id)
+    return render(request, "index.html") 
 
 def receta(request):
     return render(request, "about.html")
@@ -132,3 +133,9 @@ class RecetaDeleteView(LoginRequiredMixin, DeleteView):
 
 
 
+
+def error_404_view(request, exception):
+    return render(request, 'error_404.html', status=404)
+
+def error_500_view(request):
+    return render(request, 'error_405.html', status=405)
