@@ -1,7 +1,18 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
-from users.forms import UserRegisterForm
+from django.contrib.auth.decorators import login_required
+from users.forms import UserRegisterForm, UserEditForm
+from users.models import Avatar
+
+@login_required
+def inicio(request):
+    avatares = Avatar.objects.get(user=request.user)
+    return render(
+        request,
+        "AppCoder/index.html",
+        {"url": avatares.imagen.url}
+    )
 
 def login_request(request):
 
@@ -41,3 +52,51 @@ def register(request):
 
     form = UserRegisterForm()     
     return render(request,"users/registro.html" ,  {"form":form, "msg_register": msg_register})
+
+# Vista de editar el perfil
+# Obligamos a loguearse para editar los datos del usuario activo
+@login_required
+def editar_usuario(request):
+
+    # El usuario para poder editar su perfil primero debe estar logueado.
+    # Al estar logueado, podremos encontrar dentro del request la instancia
+    # del usuario -> request.user
+    usuario = request.user
+
+    if request.method == 'POST':
+
+        miFormulario = UserEditForm(request.POST)
+
+        if miFormulario.is_valid():
+
+            informacion = miFormulario.cleaned_data
+
+            # Datos que se modificarán!!!
+            usuario.email = informacion['email']
+            usuario.first_name = informacion['first_name']
+            usuario.last_name = informacion['last_name']
+            usuario.password1 = informacion['password1']
+            usuario.password2 = informacion['password1']
+            usuario.save()
+
+            # Retornamos al inicio una vez guardado los datos
+            return render(request, "index.html")
+
+    else:
+        # Cuando el método es GET, podemos mostrar el formulario
+        # con datos pre-cargados porque los conocemos del mismo usuario
+        datos = {
+            'email': usuario.email,
+            'first_name': usuario.first_name,
+            'last_name' : usuario.last_name
+        }
+        miFormulario = UserEditForm(initial=datos)
+
+    return render(
+        request,
+        "users/editar_usuario.html",
+        {
+            "mi_form": miFormulario,
+            "usuario": usuario
+        }
+    )
